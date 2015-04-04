@@ -1,3 +1,4 @@
+@omniauth_test
 Feature: Sign in
   In order to access the site
   As a user
