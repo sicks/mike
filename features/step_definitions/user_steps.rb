@@ -5,8 +5,8 @@ def google_visitor
 end
 
 def delete_user
-  @user ||= User.includes(:auths).find_by("auth.uid" => @visitor[:uid])
-  @user.destroy unless @user.empty?
+  @user ||= User.includes(:auths).find_by( auths: { uid: @visitor[:uid] } )
+  @user.destroy unless @user.nil?
 end
 
 # Givens
