@@ -1,25 +1,26 @@
 # Helpers
 # =======
-def google_visitor
+def create_visitor
   @visitor ||= { provider: "google", uid: "123456789" }
 end
 
 def delete_user
-  @user ||= User.includes(:auths).find_by( auths: { uid: @visitor[:uid] } )
+  @user ||= User.includes(:auths).find_by( auths: { uid: @visitor[:uid], provider: @visitor[:provider] } )
   @user.destroy unless @user.nil?
 end
 
 # Givens
 # ======
 Given(/^I do not exist as a user$/) do
-  google_visitor
+  create_visitor
   delete_user
 end
 
 # Whens
 # =====
 When(/^I sign in via google auth$/) do
-  pending # express the regexp above with the code you wish you had
+  visit login_path
+  click_link 'google'
 end
 
 # Thens
