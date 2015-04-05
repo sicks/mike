@@ -35,7 +35,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
-
+gem 'foundation-rails'
+gem 'font-awesome-sass'
 
 
 group :development, :test do
