@@ -49,6 +49,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~>3.0'
+  gem 'quiet_assets'
 end
 
 group :test do
