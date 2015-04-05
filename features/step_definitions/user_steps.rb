@@ -1,11 +1,15 @@
 # Helpers
 # =======
 def create_visitor
-  @visitor ||= { provider: "google", uid: "123456789" }
+  @visitor ||= { provider: "google_oauth2", uid: "123456789" }
+end
+
+def find_user
+  @user ||= User.includes(:auths).find_by( auths: { uid: @visitor[:uid], provider: @visitor[:provider] } )
 end
 
 def delete_user
-  @user ||= User.includes(:auths).find_by( auths: { uid: @visitor[:uid], provider: @visitor[:provider] } )
+  find_user
   @user.destroy unless @user.nil?
 end
 
@@ -26,10 +30,11 @@ end
 # Thens
 # =====
 Then(/^a new user should be created$/) do
-  pending # express the regexp above with the code you wish you had
+  find_user
+  expect(@user).to_not eq nil
 end
 
-Then(/^I should be signed in$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I should see a success message$/) do
+  expect(page).to have_content "Login Successful."
 end
 

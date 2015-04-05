@@ -8,4 +8,4 @@ Feature: Sign in
     Given I do not exist as a user
     When I sign in via google auth
     Then a new user should be created
-    And I should be signed in
+    And I should see a success message
