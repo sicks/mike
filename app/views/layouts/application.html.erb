@@ -24,8 +24,8 @@
         <% end -%>
       </div>
     </header>
-    <div class="row">
-      <nav class="medium-3 column">
+    <div class="row main-wrapper">
+      <nav class="column">
         <% if user_signed_in? %>
           <ul class="side-nav text-right">
             <li><%= link_to "Home", root_path %></li>
@@ -37,7 +37,7 @@
           </ul>
         <% end %>
       </nav>
-      <main class="medium-9 column">
+      <main class="column">
         <%= yield %>
       </main>
     </div>

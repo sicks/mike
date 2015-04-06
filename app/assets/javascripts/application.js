@@ -18,4 +18,7 @@
 
 $(function(){
   $(document).foundation();
+  $(document).on('click', 'a.menu-toggle', function(){
+    $('.main-wrapper').toggleClass('open');
+  });
 });

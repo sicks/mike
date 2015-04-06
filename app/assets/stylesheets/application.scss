@@ -24,7 +24,9 @@ $glostik: #22F151;
 @import "foundation_and_overrides";
 
 header {
-  h1 { font-size: 3em; }
+  h1 {
+    font-size: 3em;
+  }
   display: flex;
 
   .flash {
@@ -40,9 +42,55 @@ header {
   line-height: 1em;
 }
 
+.main-wrapper {
+  overflow: hidden;
+  >nav {
+    width: 10em;
+    position: absolute;
+    left: -10em;
+  }
+  >main {
+    left: 0;
+  }
+  >nav, >main {
+    transition: left 0.25s;
+  }
+  &.open {
+    >nav {
+      left: 0;
+    }
+    >main {
+      left: 10em;
+    }
+  }
+}
+
+.page-title {
+  a {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 0.45em;
+  }
+  span {
+    vertical-align: middle;
+  }
+}
+
 @media only screen and (min-width: 40.063em) {
+  .main-wrapper {
+    >nav {
+      position: static;
+      width: 25%;
+    }
+    >main {
+      width: 75%;
+    }
+  }
   header h1 {
     font-size: 2.8em;
+  }
+  .page-title a {
+    display: none;
   }
 }
 @media only screen and ( min-width: 64.063em) {
