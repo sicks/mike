@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "dg3n" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -16,9 +16,9 @@
 
     <header class="row">
       <div class="medium-3 column">
-        <h1>dg3n</h1>
+        <h1 class="text-right">dg3n</h1>
       </div>
-      <div class="medium-9 column">
+      <div class="medium-9 column flash">
         <% flash.each do |name, msg| -%>
           <%= content_tag :div, msg, class: name %>
         <% end -%>
@@ -26,7 +26,16 @@
     </header>
     <div class="row">
       <nav class="medium-3 column">
-        navigation!
+        <% if user_signed_in? %>
+          <ul class="side-nav text-right">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Ops", "#" %></li>
+            <li><%= link_to "Mapper", "#" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "API Keys", "#" %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+          </ul>
+        <% end %>
       </nav>
       <main class="medium-9 column">
         <%= yield %>

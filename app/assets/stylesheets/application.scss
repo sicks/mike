@@ -1,0 +1,54 @@
+// Fonts
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900);
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@font-face {
+  font-family: 'furoreregular';
+  src: font-url('Furore-webfont.eot');
+  src: font-url('Furore-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('Furore-webfont.woff') format('woff'),
+       font-url('Furore-webfont.ttf') format('truetype'),
+       font-url('Furore-webfont.svg#furoreregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Color Pallette
+$dark: #222222;
+$less-dark: #3D4039;
+$grey: #8A9082;
+$snow: #F2F2F2;
+$glostik: #22F151;
+
+@import "foundation_and_overrides";
+
+header {
+  h1 { font-size: 3em; }
+  display: flex;
+
+  .flash {
+    display: flex;
+    div {
+      align-self: flex-end;
+      margin-bottom: 0.3em;
+    }
+  }
+}
+
+.side-nav li a {
+  line-height: 1em;
+}
+
+@media only screen and (min-width: 40.063em) {
+  header h1 {
+    font-size: 2.8em;
+  }
+}
+@media only screen and ( min-width: 64.063em) {
+  header h1 {
+    font-size: 4.75em;
+  }
+}
+
+
