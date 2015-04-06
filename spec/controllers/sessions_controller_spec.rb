@@ -33,9 +33,9 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "logout" do
-    it "destroys the current session" do
+    it "destroys the user's session" do
       delete :destroy
-      expect(session.empty?).to eq true
+      expect(session[:user_id].nil?).to eq true
     end
 
     it "redirects to the login page" do
