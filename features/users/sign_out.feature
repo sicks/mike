@@ -7,6 +7,6 @@ Feature: Sign out
   Scenario: User signs out
     Given I am logged in
     When I logout
-    Then I should see a logout success message
-    When I visit the home page
-    Then I should see 'login'
+    Then I should see 'Logout Successful.'
+    When I visit '/'
+    Then I should be redirected to '/login'

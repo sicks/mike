@@ -35,6 +35,10 @@ Given(/^I am logged in$/) do
   click_link 'google'
 end
 
+Given(/^I have no api keys$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
 # Whens
 # =====
 When(/^I sign in via google auth$/) do
@@ -46,8 +50,8 @@ When(/^I logout$/) do
   click_link 'Logout'
 end
 
-When(/^I visit the home page$/) do
-  visit root_path
+When(/^I visit '(.*)'$/) do |path|
+  visit path
 end
 
 # Thens
@@ -57,15 +61,11 @@ Then(/^a new user should be created$/) do
   expect(@user).to_not eq nil
 end
 
-Then(/^I should see a login success message$/) do
-  expect(page).to have_content "Login Successful."
+Then(/^I should see '(.*)'$/) do |message|
+  expect(page).to have_content message
 end
 
-Then(/^I should see a logout success message$/) do
-  expect(page).to have_content "Logout Successful."
-end
-
-Then(/^I should see 'login'$/) do
-  expect(page).to have_content "Login"
+Then(/^I should be redirected to '(.*)'$/) do |path|
+  expect(current_path).to eq path
 end
 

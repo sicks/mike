@@ -8,10 +8,10 @@ Feature: Sign in
     Given I do not exist as a user
     When I sign in via google auth
     Then a new user should be created
-    And I should see a login success message
+    And I should see 'Login Successful.'
 
   Scenario: User already exists
     Given I already exist as a user
     And I am not logged in
     When I sign in via google auth
-    Then I should see a login success message
+    Then I should see 'Login Successful.'
