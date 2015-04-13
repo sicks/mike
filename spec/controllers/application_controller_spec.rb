@@ -7,7 +7,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
-  context "no user is logged in" do
+  context "when the user is not logged in" do
     it "redirects to the login page" do
       session[:user_id] = nil
       get :index
@@ -15,8 +15,8 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
-  context "the logged in user requires a valid API key" do
-    it "redirects to the new api key page" do
+  context "when the user is logged in, but has no API keys" do
+    it "redirects to the new api key path" do
       session[:user_id] = create(:user).id
       get :index
       expect(response).to redirect_to new_api_key_path
