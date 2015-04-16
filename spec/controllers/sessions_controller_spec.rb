@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'support/omni_auth_test_helper'
 include OmniAuthTestHelper
 
 RSpec.describe SessionsController, type: :controller do
