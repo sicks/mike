@@ -2,76 +2,91 @@ require 'rails_helper'
 
 RSpec.describe ApiKeysController, type: :controller do
 
+  let(:api_key) { create(:api_key) }
+
   context "when the user is logged in" do
+    let(:user) { create(:user) }
+
     before(:example) do
-      sign_in
+      session[:user_id] = user.id
     end
 
     describe "GET #index" do
+      let(:get_index) { get :index }
+
       context "when the user has at least one API key" do
         before(:example) do
-          @current_user.api_keys << create(:api_key)
-          get :index
+          user.api_keys << api_key
         end
 
         it "returns http success" do
-          expect(response).to have_http_status(:success)
+          expect( get_index ).to have_http_status :success
         end
 
         it "renders the :index template" do
-          expect(response).to render_template :index
+          expect( get_index ).to render_template :index
         end
       end
     end
 
     describe "GET #new" do
-      before(:example) do
-        get :new
-      end
+      let(:get_new) { get :new }
 
       it "assigns a new API key to @api_key" do
-        expect(assigns(:api_key)).to be_a_new(ApiKey)
+        get_new
+        expect( assigns(:api_key) ).to be_a_new(ApiKey)
       end
 
       it "renders the :new template" do
-        expect(response).to render_template :new
+        expect( get_new ).to render_template :new
       end
     end
 
     describe "POST #create" do
-      context "when valid parameters are supplied" do
-        before(:example) do
-          post :create, api_key: attributes_for(:api_key).except(:user_id)
-        end
+      context "when params are valid" do
+        let(:post_create) { post :create, api_key: attributes_for(:api_key).except(:user_id) }
 
-        it "creates a new api key on the current user" do
-          expect(assigns(:api_key)).not_to be_new_record
+        it "adds a new api key to the current user" do
+          expect{ post_create }.to change(user.api_keys, :count).by(1)
         end
 
         it "redirects to API index path" do
-          expect(response).to redirect_to api_keys_path
+          expect( post_create ).to redirect_to api_keys_path
+        end
+      end
+
+      context "when params are invalid" do
+        let(:post_create) { post :create, api_key: attributes_for(:api_key).except(:user_id, :vcode) }
+
+        it "shows the new template" do
+          expect( post_create ).to render_template :new
         end
       end
     end
 
     describe "DELETE #destroy" do
+      let(:delete_destroy) { delete :destroy, id: api_key.id }
+
       context "when the user has at least one API key" do
         before(:example) do
-          @api_key = create(:api_key)
-          @current_user.api_keys << @api_key
+          user.api_keys << api_key
         end
-        subject { delete :destroy, id: @api_key.id }
 
         it "deletes the specified key" do
-          expect {
-            subject
-          }.to change(ApiKey, :count).by(-1)
+          expect{ delete_destroy }.to change(ApiKey, :count).by(-1)
         end
 
         it "redirects to the API index path" do
-          expect(subject).to redirect_to api_keys_path
+          expect( delete_destroy ).to redirect_to api_keys_path
         end
       end
     end
+  end
+
+  context "when the user is not logged in" do
+    it{ expect( get :index ).to redirect_to login_path }
+    it{ expect( get :new ).to redirect_to login_path }
+    it{ expect( post :create, api_key: attributes_for(:api_key).except(:user_id) ).to redirect_to login_path }
+    it{ expect( delete :destroy, id: api_key.id ).to redirect_to login_path }
   end
 end
