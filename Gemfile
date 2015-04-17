@@ -53,6 +53,8 @@ group :development, :test do
   gem 'rspec-rails', '~>3.0'
   gem 'capybara'
   gem 'quiet_assets'
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 group :test do
