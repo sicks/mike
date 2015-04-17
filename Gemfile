@@ -39,6 +39,7 @@ gem 'figaro'
 gem 'foundation-rails'
 gem 'font-awesome-sass'
 gem 'autoprefixer-rails'
+gem 'eaal'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,4 +60,5 @@ end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'vcr'
 end
