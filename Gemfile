@@ -61,4 +61,5 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'vcr'
+  gem 'faraday', '0.8.9'
 end
