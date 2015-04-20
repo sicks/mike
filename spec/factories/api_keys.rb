@@ -5,7 +5,7 @@ FactoryGirl.define do
     user
   end
 
-  factory :expired_api_key, class: ApiKey do
+  factory :api_key_expired, class: ApiKey do
     key_id 4300329
     vcode "BqFQDA7L7Z1BlJGg5HbPtTBITOezZmB71XAWLiyD9QZhWUJNjosSjN1XREgbeBqb"
     user
