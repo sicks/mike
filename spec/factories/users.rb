@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :user do
-
     after( :build ) do |user|
-      user.auths << build(:auth, user: user)
+      user.auths << build(:google_oauth2, user: user)
     end
     after( :create ) do |user|
       user.auths.each { |auth| auth.save! }

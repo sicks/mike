@@ -32,20 +32,21 @@ RSpec.describe ApiKey, type: :model do
 
     describe '.characters' do
       it 'returns a list of characters on the api' do
-        expect(api_key.characters.count).not_to eq 0
+        expect(api_key.characters.count).to be > 0
       end
     end
 
     describe '.corporations' do
       it 'returns a list of corporations on the api' do
-        expect(api_key.corporations.count).not_to eq 0
+        expect(api_key.corporations.count).to be > 0
       end
     end
 
     describe '.access_mask' do
       it 'returns the access mask of the provided key' do
-        expect(api_key.access_mask).not_to eq false
+        expect(api_key.access_mask).not_to be_empty
       end
+
     end
 
   end

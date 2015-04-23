@@ -23,7 +23,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard 'rspec', cmd: 'bundle exec rspec', cli: '--drb --format Fuubar --color', version: 2 do
+guard 'rspec', cmd: 'bundle exec rspec' do
   # run every updated spec file
   watch(%r{^spec/.+_spec\.rb$})
   # run the lib specs when a file in lib/ changes
