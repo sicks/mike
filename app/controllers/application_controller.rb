@@ -7,10 +7,16 @@ class ApplicationController < ActionController::Base
   before_action :require_api_keys
 
   def authenticate_user
-    redirect_to login_path unless user_signed_in?
+    unless user_signed_in?
+      flash_message :notice, 'login required'
+      redirect_to login_path
+    end
   end
 
   def require_api_keys
-    redirect_to new_api_key_path, notice: 'Add an API key to access corp tools.' if current_user.api_keys.empty?
+    if current_user.api_keys.empty?
+      flash_message :notice, 'an api key is required'
+      redirect_to new_api_key_path
+    end
   end
 end

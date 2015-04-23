@@ -13,4 +13,19 @@ module ApplicationHelper
       content_tag(:span, title)
     end
   end
+
+  def flash_message(type, text)
+    flash[type] ||= []
+    flash[type] << text
+  end
+
+  def render_flash
+    output = ""
+    flash.each do |type, messages|
+      messages.each do |m|
+        output << content_tag( :div, m, class: type )
+      end
+    end
+    output.html_safe
+  end
 end

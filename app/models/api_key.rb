@@ -22,7 +22,7 @@ class ApiKey < ActiveRecord::Base
   def characters
     begin
       eaal.scope = 'account'
-      eaal.APIKeyInfo.key.characters
+      eaal.Characters.characters
     rescue
       false
     end
@@ -31,7 +31,7 @@ class ApiKey < ActiveRecord::Base
   def access_mask
     begin
       eaal.scope = 'account'
-      eaal.APIKeyInfo.key.access_mask
+      eaal.APIKeyInfo.key.accessMask
     rescue
       false
     end
@@ -49,6 +49,25 @@ class ApiKey < ActiveRecord::Base
       false
     end
   end
+
+  def acl
+    begin
+      rolemap = characters.map{ |c| OpenStruct.new( { characterID: c.characterID, corporationID: c.corporationID } ) }
+      eaal.scope = 'char'
+      rolemap.each do |c|
+        sheet = eaal.CharacterSheet( "characterID" => c.characterID )
+        c.roles = sheet.corporationRoles
+        c.roles_at_hq = sheet.corporationRolesAtHQ
+        c.roles_at_base = sheet.corporationRolesAtBase
+        c.roles_at_other = sheet.corporationRolesAtOther
+        c.titles = sheet.corporationTitles
+      end
+      rolemap
+    rescue
+      false
+    end
+  end
+
   #private
   def eaal
     EAAL.cache = EAAL::Cache::FileCache.new

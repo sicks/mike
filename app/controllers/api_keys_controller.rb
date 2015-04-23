@@ -3,7 +3,7 @@ class ApiKeysController < ApplicationController
   skip_before_filter :require_api_keys, only: [:new, :create]
 
   def index
-
+    @api_keys = current_user.api_keys
   end
 
   def new
@@ -14,15 +14,18 @@ class ApiKeysController < ApplicationController
     @api_key = current_user.api_keys.create(api_key_params)
 
     if @api_key.save
-      redirect_to api_keys_path, notice: "API Key added"
+      flash_message :notice, "add API Key success"
+      redirect_to api_keys_path
     else
-      render :new, notice: "Something's wrong with provided key."
+      flash_message :notice, "add API Key failed"
+      render :new
     end
   end
 
   def destroy
     current_user.api_keys.find(params[:id]).destroy
-    redirect_to api_keys_path, notice: "API Key deleted."
+    flash_message :notice, "delete API Key success"
+    redirect_to api_keys_path
   end
 
   private

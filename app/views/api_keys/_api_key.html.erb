@@ -1,0 +1,17 @@
+<div class="api_key">
+  <div class="row">
+    <div class="small-12 column">
+      Key ID: <%= api_key.key_id %><%= link_to icon('close')+" delete", api_key, method: :delete, data: { confirm: "Really delete this API key?" }, class: "pull-right"  %><br>
+      &nbsp;Vcode: <%= api_key.vcode %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 column"><%= api_key.characters.count %> characters:</div>
+  </div>
+  <% api_key.characters.each do |c| %>
+    <div class="row">
+      <div class="small-6 column"><%= c.name %></div>
+      <div class="small-6 column"><%= c.corporationName %></div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<header>
+  <%= page_title "New API Key" %>
+</header>
+<%= form_for @api_key do |f| %>
+  <div class="row">
+    <div class="small-2 column text-right"><%= f.label :vcode %></div>
+    <div class="small-10 column"><%= f.text_field :vcode %></div>
+  </div>
+  <div class="row">
+    <div class="small-2 column text-right"><%= f.label :key_id %></div>
+    <div class="small-10 column"><%= f.text_field :key_id %></div>
+  </div>
+  <div class="row">
+    <div class="small-12 column text-right"><%= f.submit :save %></div>
+  </div>
+<% end %>

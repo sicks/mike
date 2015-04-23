@@ -1,2 +1,6 @@
-<%= page_title "Api Keys" %>
+<header>
+  <%= page_title "Your API Keys" %>
+  <%= link_to "new", new_api_key_path, class: "pull-right" %>
+</header>
 
+<%= render partial: 'api_key', collection: @api_keys %>

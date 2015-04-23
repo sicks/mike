@@ -19,9 +19,7 @@
         <h1 class="text-right">dg3n</h1>
       </div>
       <div class="medium-9 column flash">
-        <% flash.each do |name, msg| -%>
-          <%= content_tag :div, msg, class: name %>
-        <% end -%>
+        <%= render_flash %>
       </div>
     </header>
     <div class="row main-wrapper">
@@ -29,10 +27,7 @@
         <% if user_signed_in? %>
           <ul class="side-nav text-right">
             <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "Ops", "#" %></li>
-            <li><%= link_to "Mapper", "#" %></li>
-            <li class="divider"></li>
-            <li><%= link_to "API Keys", "#" %></li>
+            <li><%= link_to "API Keys", api_keys_path %></li>
             <li><%= link_to "Logout", logout_path, method: :delete %></li>
           </ul>
         <% end %>
@@ -41,6 +36,14 @@
         <%= yield %>
       </main>
     </div>
+
+    <footer>
+      <div class="row">
+        <div class="medium-8 medium-offset-3 column">
+          <%= user_signed_in? ? "logged in as #{current_user.name}": "unrecognized user" %>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>

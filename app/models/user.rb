@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
       user.auths.new( { uid: auth.uid, provider: auth.provider } )
     end
   end
+
+  def name
+    "Randy"
+  end
 end
