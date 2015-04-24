@@ -1,10 +1,4 @@
-<div class="text-center">
-  <h1>Login</h1>
-  <%= link_to auth_path(:google_oauth2), title: "google" do %>
-    <span class="fa-stack fa-2x">
-      <%= icon('square-o', class: 'fa-stack-2x') %>
-      <%= icon('google', class: 'fa-stack-1x') %>
-    </span>
-  <% end %>
-</div>
+<%= page_title "Login" %>
+
+<%= link_to icon('google')+" with google", auth_path(:google_oauth2) %>
 

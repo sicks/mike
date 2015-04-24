@@ -1,3 +1,17 @@
 .api_key {
-  margin: 1rem 0;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid $grey;
+
+  .row:first-child .small-12 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1rem;
+  }
+
+  .characters {
+    padding: 0 1em;
+    border-top: 1px solid $grey;
+  }
 }

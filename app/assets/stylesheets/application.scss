@@ -15,13 +15,17 @@
 }
 
 // Color Pallette
-$dark: #222222;
+$dark: #1A1A1A;
 $less-dark: #3D4039;
 $grey: #8A9082;
 $snow: #F2F2F2;
 $glostik: #22F151;
 
 @import "foundation_and_overrides";
+
+body {
+  font-size: 0.85em;
+}
 
 body > header {
   h1 {
@@ -89,6 +93,9 @@ main > header {
   }
 }
 
+footer {
+  opacity: 0.1;
+}
 @media only screen and (min-width: 40.063em) {
   .main-wrapper {
     >nav {

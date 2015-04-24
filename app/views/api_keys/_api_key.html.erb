@@ -8,10 +8,12 @@
   <div class="row">
     <div class="small-12 column"><%= api_key.characters.count %> characters:</div>
   </div>
-  <% api_key.characters.each do |c| %>
-    <div class="row">
-      <div class="small-6 column"><%= c.name %></div>
-      <div class="small-6 column"><%= c.corporationName %></div>
-    </div>
-  <% end %>
+  <div class="characters">
+    <% api_key.characters.each do |c| %>
+      <div class="row">
+        <div class="small-6 column"><%= c.name %></div>
+        <div class="small-6 column"><%= c.corporationName %></div>
+      </div>
+    <% end %>
+  </div>
 </div>
