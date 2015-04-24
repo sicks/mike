@@ -23,8 +23,9 @@ RSpec.feature 'API Key Management' do
     end
   end
 
-  context 'user has an api key' do
+  context 'user has API keys' do
     before(:example) do
+      user.api_keys.create( api_key )
       user.api_keys.create( api_key )
     end
 
@@ -40,6 +41,13 @@ RSpec.feature 'API Key Management' do
       fill_in 'Vcode', with: api_key[:vcode]
       click_link_or_button 'save'
       expect(page).to have_content "add API Key success"
+    end
+
+    scenario 'user deletes api key', :vcr do
+      click_link 'API Keys'
+      first("div.api_key").click_link 'delete'
+
+      expect(page).to have_content "delete API Key success"
     end
   end
 end
