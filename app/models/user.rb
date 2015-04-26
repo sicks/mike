@@ -19,4 +19,12 @@ class User < ActiveRecord::Base
   def name
     "Randy"
   end
+
+  def characters
+    api_keys.map{ |a| a.characters }.flatten
+  end
+
+  def corporations
+    api_keys.map{ |a| a.corporations }.flatten
+  end
 end

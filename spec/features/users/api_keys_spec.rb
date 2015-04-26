@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'API Key Management' do
+RSpec.feature 'API Key Management', type: :feature do
   let!(:user) { create(:user) }
   let(:api_key) { attributes_for(:api_key) }
 
@@ -9,17 +9,17 @@ RSpec.feature 'API Key Management' do
   end
 
   context 'user has no api keys' do
-    let(:api_key) { attributes_for(:api_key) }
+    let(:api_key) { attributes_for(:api_key_expired) }
     before(:example) do
       user.api_keys.destroy_all
     end
 
-    scenario 'user adds an api key', :vcr do
+    scenario 'user adds a bogus api key', :vcr do
       click_link "API Keys"
       fill_in 'Key', with: api_key[:key_id]
       fill_in 'Vcode', with: api_key[:vcode]
       click_link_or_button 'save'
-      expect(page).to have_content "add API Key success"
+      expect(page).to have_content "add API Key failed"
     end
   end
 

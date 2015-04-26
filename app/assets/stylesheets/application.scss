@@ -22,9 +22,10 @@ $snow: #F2F2F2;
 $glostik: #22F151;
 
 @import "foundation_and_overrides";
+@import "utilities";
 
 body {
-  font-size: 0.85em;
+  font-size: 14px;
 }
 
 body > header {

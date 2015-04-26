@@ -1,19 +1,31 @@
 <div class="api_key">
   <div class="row">
-    <div class="small-12 column">
-      Key ID: <%= api_key.key_id %><%= link_to icon('close')+" delete", api_key, method: :delete, data: { confirm: "Really delete this API key?" }, class: "pull-right"  %><br>
-      &nbsp;Vcode: <%= api_key.vcode %>
+    <div class="small-2 column text-right unpad-right">Key ID:</div>
+    <div class="small-6 column"><%= api_key.key_id %></div>
+    <div class="small-4 column text-right">
+      <%= link_to icon('close')+" delete", api_key, method: :delete, data: { confirm: "Really delete this API key?" } %>
     </div>
   </div>
   <div class="row">
-    <div class="small-12 column"><%= api_key.characters.count %> characters:</div>
+    <div class="small-2 column text-right unpad-right">Vcode:</div>
+    <div class="small-10 column noverflow"><%= api_key.vcode %></div>
   </div>
-  <div class="characters">
-    <% api_key.characters.each do |c| %>
-      <div class="row">
-        <div class="small-6 column"><%= c.name %></div>
-        <div class="small-6 column"><%= c.corporationName %></div>
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="small-6 column">
+      <h6><%= api_key.characters.count %> Characters</h6>
+      <ul>
+        <% api_key.characters.each do |c| %>
+          <%= content_tag :li, c.name %>
+        <% end %>
+      </ul>
+    </div>
+    <div class="small-6 column">
+      <h6><%= api_key.corporations.count %> Corporations</h6>
+      <ul>
+        <% api_key.corporations.each do |c| %>
+          <%= content_tag :li, c.name %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

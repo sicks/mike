@@ -44,7 +44,7 @@ class ApiKey < ActiveRecord::Base
       eaal.APIKeyInfo.key.characters.each do |c|
         result << OpenStruct.new({ name: c.corporationName, ccp_id: c.corporationID })
       end
-      result
+      result.uniq
     rescue
       false
     end
