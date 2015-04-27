@@ -21,10 +21,10 @@ class User < ActiveRecord::Base
   end
 
   def characters
-    api_keys.map{ |a| a.characters }.flatten
+    api_keys.map{ |a| a.characters }.flatten.uniq{ |c| c.name }
   end
 
   def corporations
-    api_keys.map{ |a| a.corporations }.flatten
+    api_keys.map{ |a| a.corporations }.flatten.uniq{ |c| c.name }
   end
 end
