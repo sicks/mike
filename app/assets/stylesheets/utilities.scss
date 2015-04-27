@@ -4,3 +4,9 @@
 .unpad-left {
   padding-left: 0;
 }
+.block-group {
+  margin: 1rem 0;
+  padding: 0 0 0 1rem;
+  border: 1px solid $grey;
+  border-width: 0 0 0 1px;
+}
