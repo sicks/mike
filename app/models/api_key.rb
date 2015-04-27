@@ -14,7 +14,7 @@ class ApiKey < ActiveRecord::Base
     begin
       eaal.scope = 'account'
       !eaal.APIKeyInfo.key.expires
-    rescue
+    rescue EAAL::Exception::EveAPIException
       true
     end
   end
@@ -23,7 +23,7 @@ class ApiKey < ActiveRecord::Base
     begin
       eaal.scope = 'account'
       eaal.Characters.characters
-    rescue
+    rescue EAAL::Exception::EveAPIException
       false
     end
   end
@@ -32,7 +32,7 @@ class ApiKey < ActiveRecord::Base
     begin
       eaal.scope = 'account'
       eaal.APIKeyInfo.key.accessMask
-    rescue
+    rescue EAAL::Exception::EveAPIException
       false
     end
   end
@@ -45,7 +45,7 @@ class ApiKey < ActiveRecord::Base
         result << OpenStruct.new({ name: c.corporationName, ccp_id: c.corporationID })
       end
       result.uniq
-    rescue
+    rescue EAAL::Exception::EveAPIException
       false
     end
   end
