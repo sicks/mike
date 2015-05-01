@@ -15,10 +15,14 @@
 //= require jquery_ujs
 //= require foundation/foundation
 //= require turbolinks
+//= require jquery.datetimepicker
 
 $(function(){
   $(document).foundation();
   $(document).on('click', 'a.menu-toggle', function(){
     $('.main-wrapper').toggleClass('open');
   });
+  $(".datetimepicker").datetimepicker({
+    mask: true
+   }).blur();
 });

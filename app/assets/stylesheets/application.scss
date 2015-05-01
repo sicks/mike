@@ -3,6 +3,9 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+//turd parties
+@import "jquery.datetimepicker";
+
 @font-face {
   font-family: 'furoreregular';
   src: font-url('Furore-webfont.eot');
@@ -122,3 +125,4 @@ footer {
 
 
 @import "api_keys";
+@import "ops";

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :api_keys, only: [:index, :new, :create, :destroy]
+  resources :ops
 end
