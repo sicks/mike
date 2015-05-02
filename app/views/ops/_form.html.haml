@@ -1,0 +1,20 @@
+= form_for @op, html: { class: "block-group" } do |f|
+  .row
+    .small-2.column.text-right
+      = f.label :name
+    .small-10.column
+      = f.text_field :name, required: true
+  .row
+    .small-2.column.text-right
+      = f.label :corp_id
+    .small-10.column
+      = f.collection_select :corp_id, current_user.corporations, :id, :name, { prompt: "select Corp" }, required: true
+  .row
+    .small-2.column.text-right
+      = f.label :start
+    .small-10.column
+      = f.text_field :start, class: "datetimepicker", required: true
+  .row
+    .small-12.column.text-right
+      = link_to icon('close')+" delete", @op, method: :delete, data: { confirm: "Really delete this Op?" }, class: "button pull-left alert"
+      = f.submit "save", class: "button"

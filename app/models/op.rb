@@ -23,6 +23,6 @@ class Op < ActiveRecord::Base
   end
 
   def start_short
-    read_attribute(:start).strftime("%m/%d %H:%M")
+    read_attribute(:start).strftime("%H:%M %m/%d")
   end
 end

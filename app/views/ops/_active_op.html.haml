@@ -1,6 +1,6 @@
 %li.op
   .row.collapse
     .small-7.column
-      = active_op.name
+      = link_to active_op.name, op_path(active_op)
     .small-5.column.text-right
       = link_to "Participate", "#", class: "button tiny"

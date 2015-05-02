@@ -1,0 +1,14 @@
+%header
+  = page_title @op.name
+  = link_to "edit", edit_op_path(@op), class: "pull-right"
+
+%p.subtext= "Operation instigated by #{@op.user.name} - Formup @ #{@op.start_short}"
+
+%h3 Claims
+.block-group
+  claims in here
+
+%h3 Participants
+.block-group
+  participants in here
+
