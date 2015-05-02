@@ -20,7 +20,14 @@ RSpec.describe Corp, type: :model do
   end
 
   describe ".claimables" do
-    pending
+    let(:corp) { create(:corp) }
+    before(:example) do
+      corp.claimables.create( attributes_for(:claimable) )
+    end
+
+    it "returns a list of ops" do
+      expect(corp.claimables.count).to eq 1
+    end
   end
 
   describe ".ops" do
