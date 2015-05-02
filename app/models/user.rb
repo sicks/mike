@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
   validates_associated :auths
   validates :auths, length: { minimum: 1 }
 
-  has_many :api_keys
+  has_many :api_keys do
+    def persisted
+      select{ |api| api if api.persisted? }
+    end
+  end
 
   def self.from_omniauth(auth)
     includes(:auths).find_by( auths: { uid: auth.uid, provider: auth.provider } ) || create_from_omniauth(auth)
@@ -25,15 +29,15 @@ class User < ActiveRecord::Base
   end
 
   def characters
-    api_keys.map{ |a| a.characters }.flatten.uniq{ |c| c.name }
+    api_keys.persisted.map{ |a| a.characters }.flatten.uniq{ |c| c.name } if api_keys.persisted.any?
   end
 
   def corporations
-    api_keys.map{ |a| a.corporations }.flatten.uniq{ |c| c.name }
+    api_keys.persisted.map{ |a| a.corporations }.flatten.uniq{ |c| c.name } if api_keys.persisted.any?
   end
 
   def main
-    characters.find{ |c| c.characterID == main_id } if characters.any?
+    characters.find{ |c| c.characterID == main_id } if api_keys.persisted.any?
   end
 
 end

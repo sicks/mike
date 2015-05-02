@@ -5,7 +5,13 @@
 <h3>Select Main</h3>
 <div class="block-group">
   <%= form_for current_user do |f| %>
-    <%= f.select :main_id, options_from_collection_for_select(current_user.characters, 'characterID', 'name'), prompt: "Select a Character" %>
+    <%= f.select :main_id,
+      options_from_collection_for_select(
+        current_user.characters,
+        'characterID',
+        'name',
+        (current_user.main.nil? ? 0 : current_user.main.characterID)),
+      prompt: "Select a Character" %>
     <div class="text-right">
       <%= f.submit "save", class: "button" %>
     </div>

@@ -19,8 +19,7 @@ class OpsController < ApplicationController
 
   def create
     @op = Op.create(op_params)
-
-    if @op.save!
+    if @op.save
       flash_message :notice, "add Op success"
       redirect_to ops_path
     else

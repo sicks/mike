@@ -4,7 +4,7 @@ class Op < ActiveRecord::Base
   has_many :claims
   has_many :participants
 
-  validates :name, :corp_id, presence: true
+  validates :name, :corp_id, :start,  presence: true
 
   def self.active
     unconcluded.where("start < ?", DateTime.now)
@@ -19,7 +19,7 @@ class Op < ActiveRecord::Base
   end
 
   def start
-    read_attribute(:start).strftime("%Y/%m/%d %H:%M")
+    read_attribute(:start).strftime("%Y/%m/%d %H:%M") unless read_attribute(:start).nil?
   end
 
   def start_short

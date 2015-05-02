@@ -4,7 +4,6 @@ RSpec.feature "Operation Management", type: :feature do
 
   context "when user is logged in, and has api keys" do
     let!(:user) { create(:user) }
-    let(:corp_api) { attributes_for(:corp_api) }
     before(:example) do
       login_with_omniauth
       user.api_keys.create( attributes_for(:api_key) )
@@ -19,7 +18,7 @@ RSpec.feature "Operation Management", type: :feature do
     scenario "user creates a new op", :vcr do
       click_link "Ops"
       click_link "new"
-      select user.api_keys.first.corporations.first.name, from: "Corp"
+      select user.corporations.first.name, from: "Corp"
       fill_in "Name", with: "chain mapping"
       click_link_or_button "save"
 

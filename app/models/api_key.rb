@@ -42,7 +42,7 @@ class ApiKey < ActiveRecord::Base
       result = []
       eaal.scope = 'account'
       eaal.APIKeyInfo.key.characters.each do |c|
-        result << OpenStruct.new({ name: c.corporationName, ccp_id: c.corporationID })
+        result << Corp.find_or_create_by(name: c.corporationName, ccp_id: c.corporationID)
       end
       result.uniq
     rescue EAAL::Exception::EveAPIException

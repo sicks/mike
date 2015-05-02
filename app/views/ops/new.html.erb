@@ -16,7 +16,7 @@
       <%= f.label :corp_id %>
     </div>
     <div class="small-10 column">
-      <%= f.collection_select :corp_id, current_user.corporations, :id, :name, prompt: "select Corp", required: true %>
+      <%= f.collection_select :corp_id, current_user.corporations, :id, :name, { prompt: "select Corp" }, required: true %>
     </div>
   </div>
   <div class="row">

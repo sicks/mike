@@ -19,18 +19,19 @@ RSpec.feature 'API Key Management', type: :feature do
       fill_in 'Key', with: api_key[:key_id]
       fill_in 'Vcode', with: api_key[:vcode]
       click_link_or_button 'save'
+
       expect(page).to have_content "add API Key failed"
     end
   end
 
   context 'user has API keys' do
     before(:example) do
-      user.api_keys.create( api_key )
-      user.api_keys.create( api_key )
+      2.times{ user.api_keys.create( api_key ) }
     end
 
     scenario 'user views api keys list', :vcr do
       click_link "API Keys"
+
       expect(page).to have_css('div.api_key', count: user.api_keys.count)
     end
 
@@ -40,6 +41,7 @@ RSpec.feature 'API Key Management', type: :feature do
       fill_in 'Key', with: api_key[:key_id]
       fill_in 'Vcode', with: api_key[:vcode]
       click_link_or_button 'save'
+
       expect(page).to have_content "add API Key success"
     end
 
