@@ -17,7 +17,11 @@ class User < ActiveRecord::Base
   end
 
   def name
-    "Randy"
+    if main.nil?
+      "Randy"
+    else
+      main.name
+    end
   end
 
   def characters
@@ -27,4 +31,9 @@ class User < ActiveRecord::Base
   def corporations
     api_keys.map{ |a| a.corporations }.flatten.uniq{ |c| c.name }
   end
+
+  def main
+    characters.find{ |c| c.characterID == main_id } if characters.any?
+  end
+
 end

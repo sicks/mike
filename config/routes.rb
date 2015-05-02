@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "users#home"
+  resources :users, only: [:update]
 
   get '/login', to: 'sessions#new'
   get '/auth/:provider/callback', to: 'sessions#create'

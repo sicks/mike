@@ -13,23 +13,48 @@ RSpec.describe User, type: :model do
     expect( no_auth_user.valid? ).to eq false
   end
 
-  describe ".characters" do
-    it "returns a unique list of characters", :vcr do
-      multi_char_user = create(:user)
-      2.times { multi_char_user.api_keys.create( attributes_for(:api_key) ) }
+  context "when no main is set" do
+    let!(:no_main_user) { create(:user) }
 
-      names = multi_char_user.characters.map{ |c| c.name }
-      expect(names.count("Sicks")).to eq 1
+    describe ".name" do
+      it "returns Randy", :vcr do
+        expect(no_main_user.name).to eq "Randy"
+      end
     end
   end
 
-  describe ".corporations" do
-    it "returns a unique list of characters", :vcr do
-      multi_corp_user = create(:user)
-      2.times { multi_corp_user.api_keys.create( attributes_for(:api_key) ) }
+  context "when a main is set" do
+    let!(:main_set_user) { create(:user) }
+    before(:example) do
+      main_set_user.api_keys.create( attributes_for(:api_key) )
+      main_set_user.main_id = main_set_user.characters.find{ |c| c.name == "Sicks" }.characterID
+    end
 
-      names = multi_corp_user.corporations.map{ |c| c.name }
-      expect(names.count("Doom Generation")).to eq 1
+    describe ".name" do
+      it "returns the name of the selected character", :vcr do
+        expect(main_set_user.name).to eq "Sicks"
+      end
+    end
+  end
+
+  context "when user has multiple api keys" do
+    let!(:multi_api_user) { create(:user) }
+    before(:example) do
+      2.times { multi_api_user.api_keys.create( attributes_for(:api_key) ) }
+    end
+
+    describe ".characters" do
+      it "returns a unique list of characters", :vcr do
+        names = multi_api_user.characters.map{ |c| c.name }
+        expect(names.count("Sicks")).to eq 1
+      end
+    end
+
+    describe ".corporations" do
+      it "returns a unique list of characters", :vcr do
+        names = multi_api_user.corporations.map{ |c| c.name }
+        expect(names.count("Doom Generation")).to eq 1
+      end
     end
   end
 end

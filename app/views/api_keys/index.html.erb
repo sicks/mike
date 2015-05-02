@@ -1,6 +1,15 @@
 <header>
-  <%= page_title "Your API Keys" %>
+  <%= page_title "API Key Management" %>
   <%= link_to "new", new_api_key_path, class: "pull-right" %>
 </header>
-
+<h3>Select Main</h3>
+<div class="block-group">
+  <%= form_for current_user do |f| %>
+    <%= f.select :main_id, options_from_collection_for_select(current_user.characters, 'characterID', 'name'), prompt: "Select a Character" %>
+    <div class="text-right">
+      <%= f.submit "save", class: "button" %>
+    </div>
+  <% end %>
+</div>
+<h3>Your Api Keys</h3>
 <%= render partial: 'api_key', collection: @api_keys %>
