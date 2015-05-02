@@ -1,0 +1,26 @@
+.api_key.block-group
+  .row
+    .small-2.column.text-right.unpad-right
+      Key ID:
+    .small-6.column
+      = api_key.key_id
+    .small-4.column.text-right
+      = link_to icon('close')+" delete", api_key, method: :delete, data: { confirm: "Really delete this API key?" }
+  .row
+    .small-2.column.text-right.unpad-right
+      Vcode:
+    .small-10.column.noverflow
+      = api_key.vcode
+  .row
+    .small-6.column
+      %h6
+        = api_key.characters.count.to_s + " Characters"
+      %ul
+        - api_key.characters.each do |c|
+          = content_tag :li, c.name
+    .small-6.column
+      %h6
+        = api_key.corporations.count.to_s + " Corporations"
+      %ul
+        - api_key.corporations.each do |c|
+          = content_tag :li, c.name

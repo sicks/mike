@@ -14,7 +14,7 @@ class OpsController < ApplicationController
   end
 
   def new
-    @op = Op.new(start: DateTime.now)
+    @op = Op.new(name: current_user.name+"'s Op", corp_id: ( current_user.main.nil? ? nil : Corp.find_by_ccp_id( current_user.main.corporationID ).id ), start: DateTime.now)
   end
 
   def create

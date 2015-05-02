@@ -1,0 +1,13 @@
+%header
+  = page_title "New API Key"
+  = link_to "back", api_keys_path, class: "pull-right"
+
+= form_for @api_key, html: { class: "block-group" } do |f|
+  .row
+    .small-2.column.text-right= f.label :key_id, "Key ID"
+    .small-4.column.end= f.text_field :key_id
+  .row
+    .small-2.column.text-right= f.label :vcode
+    .small-10.column= f.text_field :vcode
+  .row
+    .small-12.column.text-right= f.submit :save, class: "button"

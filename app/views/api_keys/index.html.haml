@@ -1,0 +1,13 @@
+%header
+  = page_title "API Key Management"
+  = link_to "new", new_api_key_path, class: "pull-right"
+
+%h3 Select Main
+.block-group
+  = form_for current_user do |f|
+    = f.select :main_id, options_from_collection_for_select( current_user.characters, 'characterID', 'name', (current_user.main.nil? ? 0 : current_user.main.characterID)), prompt: "Select a Character"
+    .text-right
+      = f.submit "save", class: "button"
+
+%h3 Your Api Keys
+= render partial: 'api_key', collection: @api_keys

@@ -1,0 +1,34 @@
+!!!
+%html{ lang: "en" }
+  %head
+    %meta{ charset: "utf-8" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+
+    %title= content_for?(:title) ? yield(:title) : "dg3n"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  %body
+    %header.row
+      .medium-3.column
+        %h1.text-right dg3n
+      .medium-9.column.flash
+        = render_flash
+    .row.main-wrapper
+      %nav.column
+        - if user_signed_in?
+          %ul.side-nav.text-right
+            %li= link_to "Home", root_path
+            %li= link_to "API Keys", api_keys_path
+            %li= link_to "Ops", ops_path
+            %li= link_to "Logout", logout_path, method: :delete
+      %main.column
+        = yield
+
+    %footer
+      .row
+        .medium-8.medium-offset-3.column
+          = user_signed_in? ? "logged in as #{current_user.name}": "unrecognized user"
