@@ -1,0 +1,14 @@
+%h3= corp.name
+
+.block-group
+  .row
+    .small-10.column
+      Claimable
+    .small-2.column.text-center
+      Weight
+  -corp.claimables.each do |c|
+    .row
+      .small-10.column
+        = link_to c.name, edit_claimable_path(c)
+      .small-2.column.text-center
+        = c.weight

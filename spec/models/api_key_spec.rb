@@ -36,19 +36,21 @@ RSpec.describe ApiKey, type: :model do
       end
     end
 
-    describe '.corporations' do
-      it 'returns a list of corporations on the api' do
-        expect(api_key.corporations.count).to be > 0
-      end
-    end
-
     describe '.access_mask' do
       it 'returns the access mask of the provided key' do
         expect(api_key.access_mask).not_to be_empty
       end
-
     end
 
+    describe 'after_save.create_corps' do
+      it 'creates nonexistant corps' do
+        Corp.destroy_all
+
+        api_key.save
+
+        expect(Corp.all.count).to_not eq 0
+      end
+    end
   end
 
   context "with invalid CCP API credentials", :vcr do

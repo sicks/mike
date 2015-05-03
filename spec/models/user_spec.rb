@@ -52,7 +52,7 @@ RSpec.describe User, type: :model do
 
     describe ".corporations" do
       it "returns a unique list of characters", :vcr do
-        names = multi_api_user.corporations.map{ |c| c.name }
+        names = multi_api_user.corps.map{ |c| c.name }
         expect(names.count("Doom Generation")).to eq 1
       end
     end

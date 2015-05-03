@@ -20,7 +20,7 @@
           = content_tag :li, c.name
     .small-6.column
       %h6
-        = api_key.corporations.count.to_s + " Corporations"
+        = api_key.characters.map{|c| c.corporationName }.uniq.count.to_s + " Corporations"
       %ul
-        - api_key.corporations.each do |c|
-          = content_tag :li, c.name
+        - api_key.characters.map{|c| c.corporationName }.uniq.each do |c|
+          = content_tag :li, c

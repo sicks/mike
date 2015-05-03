@@ -4,6 +4,8 @@ class ApiKey < ActiveRecord::Base
   validates :key_id, :vcode, :user_id, presence: true
   validate :has_not_expired
 
+  after_save :create_corps
+
   def has_not_expired
     if expired?
       errors.add(:expired, "Expired/Invalid key supplied")
@@ -37,41 +39,15 @@ class ApiKey < ActiveRecord::Base
     end
   end
 
-  def corporations
-    begin
-      result = []
-      eaal.scope = 'account'
-      eaal.APIKeyInfo.key.characters.each do |c|
-        result << Corp.find_or_create_by(name: c.corporationName, ccp_id: c.corporationID)
-      end
-      result.uniq
-    rescue EAAL::Exception::EveAPIException
-      false
-    end
-  end
-
-  def acl
-    begin
-      rolemap = characters.map{ |c| OpenStruct.new( { characterID: c.characterID, corporationID: c.corporationID } ) }
-      eaal.scope = 'char'
-      rolemap.each do |c|
-        sheet = eaal.CharacterSheet( "characterID" => c.characterID )
-        c.roles = sheet.corporationRoles
-        c.roles_at_hq = sheet.corporationRolesAtHQ
-        c.roles_at_base = sheet.corporationRolesAtBase
-        c.roles_at_other = sheet.corporationRolesAtOther
-        c.titles = sheet.corporationTitles
-      end
-      rolemap
-    rescue
-      false
-    end
-  end
-
-  #private
+  private
   def eaal
     EAAL.cache = EAAL::Cache::FileCache.new
     @api ||= EAAL::API.new( key_id, vcode )
   end
 
+  def create_corps
+    characters.each do |c|
+      Corp.find_or_create_by(name: c.corporationName, ccp_id: c.corporationID)
+    end
+  end
 end

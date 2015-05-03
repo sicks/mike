@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
     api_keys.persisted.map{ |a| a.characters }.flatten.uniq{ |c| c.name } if api_keys.persisted.any?
   end
 
-  def corporations
-    api_keys.persisted.map{ |a| a.corporations }.flatten.uniq{ |c| c.name } if api_keys.persisted.any?
+  def corps
+    Corp.where(ccp_id: characters.map{ |c| c.corporationID } ).sort{ |a, b| a.sort_val(self) <=> b.sort_val(self) }
   end
 
   def main

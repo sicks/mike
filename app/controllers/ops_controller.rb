@@ -2,16 +2,7 @@ class OpsController < ApplicationController
   before_action :get_op, only: [:show, :edit, :update, :destroy]
 
   def index
-    current_user.corporations.each do |c|
-      @corps ||= []
-      @corps << Corp.find_or_create_by(name: c.name, ccp_id: c.ccp_id)
-    end
-    unless current_user.main.nil?
-      corp = @corps.find{ |c| c.ccp_id == current_user.main.corporationID }
-      index = @corps.index(corp)
-      main_corp = @corps.slice!(index)
-      @corps.unshift(main_corp)
-    end
+
   end
 
   def new
@@ -57,6 +48,6 @@ class OpsController < ApplicationController
   end
 
   def get_op
-    @op ||= Op.where(corp_id: current_user.corporations.map{|c| c.id }).find(params[:id])
+    @op ||= Op.where(corp_id: current_user.corps.map{ |c| c.id} ).find(params[:id])
   end
 end
