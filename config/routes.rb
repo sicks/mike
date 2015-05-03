@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :api_keys, only: [:index, :new, :create, :destroy]
-  resources :ops
+  resources :ops do
+    resources :claims, only: [:new, :create, :edit, :update, :destroy]
+  end
   resources :claimables
 end

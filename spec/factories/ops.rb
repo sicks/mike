@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :active_op, class: Op do
+  factory :active_op, class: Op, aliases: [:op] do
     name "homesites"
     start DateTime.now
     corp

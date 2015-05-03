@@ -6,7 +6,24 @@
 
 %h3 Claims
 .block-group
-  claims in here
+  .row
+    .small-8.column
+      Claim
+    .small-2.column.text-center
+      Weight
+    .small-2.column.text-center
+      Quantity
+  - @op.claims.each do |claim|
+    .row
+      .small-8.column
+        = link_to claim.claimable.name, edit_op_claim_path(@op, claim)
+      .small-2.column.text-center
+        = claim.claimable.weight
+      .small-2.column.text-center
+        = claim.quantity
+  .row
+    .small-12.column.text-right
+      = link_to "add claim", new_op_claim_path(@op), class: "button tiny"
 
 %h3 Participants
 .block-group

@@ -1,0 +1,15 @@
+= form_for [@op, @claim], html: { class: "block-group" } do |f|
+  .row
+    .small-2.column.text-right
+      = f.label :claimable
+    .small-10.column
+      = f.collection_select :claimable_id, @op.corp.claimables, :id, :name, { prompt: "select Claimable" }, required: true
+  .row
+    .small-2.column.text-right
+      = f.label :quantity
+    .small-10.column
+      = f.number_field :quantity
+  .row
+    .small-12.column.text-right
+      = link_to icon('close')+" delete", [@op, @claim], method: :delete, data: { confirm: "Really delete this Claim?" }, class: "button pull-left alert" unless action_name == "new"
+      = f.submit "save", class: "button"

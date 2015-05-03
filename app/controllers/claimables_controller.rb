@@ -6,7 +6,7 @@ class ClaimablesController < ApplicationController
   end
 
   def new
-    @claimable = Claimable.new(weight: 1, corp_id: user_corps.first.id)
+    @claimable = Claimable.new(weight: 1, corp_id: current_user.corps.first.id)
   end
 
   def create
