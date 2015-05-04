@@ -4,7 +4,12 @@
 
 %p.subtext= "Operation instigated by #{@op.user.name} - Formup @ #{@op.start_short}"
 
-%h3 Claims
+.row.section-title
+  .small-8.column
+    %h3 Claims
+  .small-4.column.text-right
+    = link_to "add claim", new_op_claim_path(@op), class: "button tiny"
+
 .block-group
   .row
     .small-8.column
@@ -12,7 +17,7 @@
     .small-2.column.text-center
       Weight
     .small-2.column.text-center
-      Quantity
+      Qty.
   - @op.claims.each do |claim|
     .row
       .small-8.column
@@ -21,11 +26,28 @@
         = claim.claimable.weight
       .small-2.column.text-center
         = claim.quantity
-  .row
-    .small-12.column.text-right
-      = link_to "add claim", new_op_claim_path(@op), class: "button tiny"
 
-%h3 Participants
+.row.section-title
+  .small-8.column
+    %h3 Participants
+  .small-4.column.text-right
+    - if @op.users.include?(current_user)
+      %span.subtext participating!
+    - else
+      = link_to "Participate", op_participants_path(@op), method: :post, class: "button tiny"
+
 .block-group
-  participants in here
+  .row
+    .small-7.column
+      Member
+    .small-2.column.text-center.end
+      Modifier
+  - @op.participants.each do |p|
+    .row
+      .small-7.column
+        = p.user.name
+      .small-2.column.text-center
+        = p.mod
+      .small-3.column.text-right
+        = link_to "withdraw", [@op, p], method: :delete, data: { confirm: "withdraw Participant from this Op?" }
 

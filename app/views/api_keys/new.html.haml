@@ -4,6 +4,9 @@
 
 = form_for @api_key, html: { class: "block-group" } do |f|
   .row
+    .small-12.column.text-right
+      = link_to "click here to create an API", "http://community.eveonline.com/support/api-key/CreatePredefined?accessMask=8", target: "_blank"
+  .row
     .small-2.column.text-right= f.label :key_id, "Key ID"
     .small-4.column.end= f.text_field :key_id
   .row

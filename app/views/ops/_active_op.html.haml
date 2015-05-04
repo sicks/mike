@@ -3,4 +3,7 @@
     .small-7.column
       = link_to active_op.name, op_path(active_op)
     .small-5.column.text-right
-      = link_to "Participate", "#", class: "button tiny"
+      - if active_op.users.include?(current_user)
+        %span.subtext participating!
+      - else
+        = link_to "Participate", op_participants_path(active_op), method: :post, class: "button tiny"

@@ -16,6 +16,10 @@
     }
   }
 }
+.section-title {
+  display: flex;
+  align-items: baseline;
+}
 .subtext {
   font-size: 0.75rem;
 }
