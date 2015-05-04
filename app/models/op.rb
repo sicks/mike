@@ -1,8 +1,8 @@
 class Op < ActiveRecord::Base
   belongs_to :corp
   belongs_to :user
-  has_many :claims
-  has_many :participants
+  has_many :claims, dependent: :destroy
+  has_many :participants, dependent: :destroy
   has_many :users, through: :participants
 
   validates :name, :corp_id, :start,  presence: true
