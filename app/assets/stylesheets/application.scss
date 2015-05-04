@@ -29,6 +29,13 @@ $glostik: #22F151;
 
 body {
   font-size: 14px;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 0;
+
+  div, header, main, nav, footer, ul, li, input, textarea, select, table, th, tr, td {
+    -webkit-box-sizing: border-box;
+  }
 }
 
 body > header {
@@ -48,7 +55,6 @@ body > header {
 
 main > header {
   display: block;
-  overflow: auto;
   border-bottom: 1px solid #fff;
 
   h1 {
@@ -64,7 +70,8 @@ main > header {
 }
 
 .main-wrapper {
-  overflow: hidden;
+  position: relative;
+
   >nav {
     width: 10em;
     position: absolute;
@@ -106,10 +113,12 @@ footer {
   .main-wrapper {
     >nav {
       position: static;
+      display: inline-block;
       width: 25%;
     }
     >main {
       width: 75%;
+      display: inline-block;
     }
   }
   body > header h1 {

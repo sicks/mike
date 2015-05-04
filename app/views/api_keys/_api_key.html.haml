@@ -2,10 +2,8 @@
   .row
     .small-2.column.text-right.unpad-right
       Key ID:
-    .small-6.column
+    .small-10.column
       = api_key.key_id
-    .small-4.column.text-right
-      = link_to icon('close')+" delete", api_key, method: :delete, data: { confirm: "Really delete this API key?" }
   .row
     .small-2.column.text-right.unpad-right
       Vcode:
@@ -24,3 +22,6 @@
       %ul
         - api_key.characters.map{|c| c.corporationName }.uniq.each do |c|
           = content_tag :li, c
+  .row
+    .small-12.column.text-right
+      = link_to icon('close')+" delete", api_key, method: :delete, class: "button tiny alert"

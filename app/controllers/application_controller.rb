@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user
   before_action :require_api_keys
+  before_action :require_main
 
   def authenticate_user
     unless user_signed_in?
@@ -17,6 +18,13 @@ class ApplicationController < ActionController::Base
     if current_user.api_keys.empty?
       flash_message :notice, 'an api key is required'
       redirect_to new_api_key_path
+    end
+  end
+
+  def require_main
+    if current_user.main.nil?
+      flash_message :notice, "please set your main"
+      redirect_to api_keys_path
     end
   end
 end

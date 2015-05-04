@@ -1,6 +1,7 @@
 class ApiKeysController < ApplicationController
 
   skip_before_filter :require_api_keys, only: [:new, :create]
+  skip_before_filter :require_main, only: [:index, :new, :create]
 
   def index
     @api_keys = current_user.api_keys

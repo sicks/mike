@@ -50,7 +50,7 @@
       .small-2.column.text-center
         = p.mod
       .small-3.column.text-right
-        = link_to "withdraw", [@op, p], method: :delete, data: { confirm: "withdraw Participant from this Op?" }
+        = link_to icon('close')+" withdraw", [@op, p], method: :delete, class: "button tiny alert"
 
 .row
   .small-12.column

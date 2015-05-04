@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_filter :authenticate_user
   skip_before_filter :require_api_keys
+  skip_before_filter :require_main
 
   def new
     redirect_to root_path if user_signed_in?
