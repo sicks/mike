@@ -26,4 +26,16 @@ class Op < ActiveRecord::Base
   def start_short
     read_attribute(:start).strftime("%H:%M %m/%d")
   end
+
+  def subtotal
+    claims.reduce(0) do |total, claim|
+      total + claim.value
+    end
+  end
+
+  def total
+    participants.reduce(0) do |total, participant|
+      total + participant.value
+    end
+  end
 end

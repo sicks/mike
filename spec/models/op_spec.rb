@@ -25,7 +25,15 @@ RSpec.describe Op, type: :model do
     it "lists users who participated in the op"
   end
 
-  describe ".totalclaims" do
-    it "returns the total sum of all claims for this op"
+  describe ".claims" do
+    it "lists claimables associated with this op"
+  end
+
+  describe ".subtotal" do
+    it "sums the weight of each claim multiplied by its quantity"
+  end
+
+  describe ".total" do
+    it "sums the product of each participant mod and this op's subtital"
   end
 end

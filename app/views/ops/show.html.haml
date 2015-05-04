@@ -27,6 +27,7 @@
       .small-2.column.text-center
         = claim.quantity
 
+
 .row.section-title
   .small-8.column
     %h3 Participants
@@ -51,3 +52,18 @@
       .small-3.column.text-right
         = link_to "withdraw", [@op, p], method: :delete, data: { confirm: "withdraw Participant from this Op?" }
 
+.row
+  .small-12.column
+    %h3 Totals:
+
+.block-group
+  .row
+    .small-8.column
+      Subtotal (op weight):
+    .small-4.column.text-center
+      = @op.subtotal
+  .row
+    .small-8.column
+      Total Operation Value:
+    .small-4.column.text-center
+      = @op.total
