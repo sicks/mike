@@ -13,7 +13,7 @@
     .small-2.column.text-right.unpad-right
       = f.label :start
     .small-10.column
-      = f.text_field :start, class: "datetimepicker", required: true
+      = f.text_field :start_time, class: "datetimepicker", required: true
   .row
     .small-12.column.text-right
       = link_to icon('close')+" delete", @op, method: :delete, class: "button small pull-left alert" unless action_name == "new"

@@ -67,3 +67,13 @@
       Total Operation Value:
     .small-4.column.text-center
       = @op.total
+
+.row
+  .small-12.column
+    %h3= "Finalize Op"
+.block-group
+  .row
+    .small-12.column
+      = link_to "Conclude Op: " + DateTime.now.strftime("%Y/%m/%d %H:%M"), op_conclude_path(@op), class: "button small alert"
+
+

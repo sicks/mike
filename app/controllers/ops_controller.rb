@@ -6,7 +6,7 @@ class OpsController < ApplicationController
   end
 
   def new
-    @op = Op.new(name: current_user.name+"'s Op", corp_id: ( current_user.main.nil? ? nil : Corp.find_by_ccp_id( current_user.main.corporationID ).id ), start: DateTime.now)
+    @op = Op.prepare(current_user)
   end
 
   def create
@@ -36,6 +36,19 @@ class OpsController < ApplicationController
     redirect_to op_path(@op)
   end
 
+  def conclude
+    @op = Op.where(corp_id: current_user.corps.map{ |c| c.id} ).find(params[:op_id])
+    @op.end_time = DateTime.now
+
+    if @op.save
+      flash_message(:notice, "Op ended successfully at #{@op.end_time}")
+      redirect_to ops_path
+    else
+      flash_message(:notice, "failed to end Op")
+      redirect_to op_path(@op)
+    end
+  end
+
   def destroy
     @op.destroy
     flash_message(:notice, "delete Op successful")
@@ -44,7 +57,7 @@ class OpsController < ApplicationController
 
   private
   def op_params
-    params.require(:op).permit(:corp_id, :name, :start)
+    params.require(:op).permit(:corp_id, :name, :start_time, :end_time)
   end
 
   def get_op

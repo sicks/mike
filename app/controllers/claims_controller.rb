@@ -2,6 +2,10 @@ class ClaimsController < ApplicationController
   before_action :get_op, only: [:new, :create, :edit, :update, :destroy]
   before_action :get_claim, only: [:edit, :update, :destroy]
 
+  def index
+
+  end
+
   def new
     @claim = @op.claims.build
   end

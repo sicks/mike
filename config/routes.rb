@@ -9,8 +9,10 @@ Rails.application.routes.draw do
 
   resources :api_keys, only: [:index, :new, :create, :destroy]
   resources :ops do
+    get :conclude
     resources :claims, only: [:new, :create, :edit, :update, :destroy]
     resources :participants, only: [:create, :update, :destroy]
   end
+  resources :claims, only: [:index]
   resources :claimables
 end

@@ -5,26 +5,45 @@ class Op < ActiveRecord::Base
   has_many :participants, dependent: :destroy
   has_many :users, through: :participants
 
-  validates :name, :corp_id, :start,  presence: true
+  validates :name, :corp_id, :start_time,  presence: true
 
   def self.active
-    unconcluded.where("start < ?", DateTime.now)
+    unconcluded.where("start_time < ?", DateTime.now)
   end
 
   def self.future
-    unconcluded.where("start > ?", DateTime.now)
+    unconcluded.where("start_time > ?", DateTime.now)
   end
 
   def self.unconcluded
-    where(end: nil)
+    where(end_time: nil)
   end
 
-  def start
-    read_attribute(:start).strftime("%Y/%m/%d %H:%M") unless read_attribute(:start).nil?
+  def self.concluded
+    where.not(end_time: nil)
+  end
+
+  def self.prepare(user)
+    Op.new(
+      name: user.name+"'s Op",
+      corp_id: ( user.main.nil? ? nil : Corp.find_by_ccp_id( user.main.corporationID ).id ),
+      start_time: DateTime.now)
+  end
+
+  def start_time
+    read_attribute(:start_time).strftime("%Y/%m/%d %H:%M") unless read_attribute(:start_time).nil?
   end
 
   def start_short
-    read_attribute(:start).strftime("%H:%M %m/%d")
+    read_attribute(:start_time).strftime("%H:%M %m/%d")
+  end
+
+  def end_time
+    read_attribute(:end_time).strftime("%Y/%m/%d %H:%M") unless read_attribute(:end_time).nil?
+  end
+
+  def end_short
+    read_attribute(:end_time).strftime("%H:%M %m/%d")
   end
 
   def subtotal

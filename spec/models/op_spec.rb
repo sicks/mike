@@ -15,8 +15,8 @@ RSpec.describe Op, type: :model do
     expect(op.valid?).to eq false
   end
 
-  it "is invalid without a start" do
-    op.start = nil
+  it "is invalid without a start time" do
+    op.start_time = nil
 
     expect(op.valid?).to eq false
   end
