@@ -4,6 +4,9 @@
 
 %h3 Select Main
 .block-group
+  .row
+    .small-12.column
+      %p The character you select as your main will determine the corp under which all other tracking occurs.
   = form_for current_user do |f|
     = f.select :main_id, options_from_collection_for_select( current_user.characters, 'characterID', 'name', (current_user.main.nil? ? 0 : current_user.main.characterID)), prompt: "Select a Character"
     .text-right

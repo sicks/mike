@@ -65,10 +65,14 @@ main > header {
   }
 }
 
-.side-nav li a {
-  line-height: 1em;
+.side-nav {
+  h4 {
+    margin-top: 0;
+  }
+  li a {
+    line-height: 1em;
+  }
 }
-
 .main-wrapper {
   position: relative;
 

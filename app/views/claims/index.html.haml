@@ -1,23 +1,22 @@
 = page_title "Claim Summary"
 
-- current_user.corps.each do |corp|
+.row
+  .small-12.column
+    %h3= current_corp.name
+.block-group
   .row
-    .small-12.column
-      %h3= corp.name
-  .block-group
+    .small-6.column
+      Op Name
+    .small-4.column
+      Date
+    .small-2.column
+      Claims
+  - current_corp.ops.concluded.each do |op|
     .row
       .small-6.column
-        Op Name
+        = op.name
       .small-4.column
-        Date
+        = op.end_time
       .small-2.column
-        Claims
-    - corp.ops.concluded.each do |op|
-      .row
-        .small-6.column
-          = op.name
-        .small-4.column
-          = op.end_time
-        .small-2.column
-          = op.total
+        = op.total
 

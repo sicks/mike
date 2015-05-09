@@ -14,26 +14,16 @@
   %body
     %header.row
       .small-6.medium-3.column
-        %h1.text-right dg3n
+        %h1.text-right mike
       .small-6.medium-9.column.flash
         = render_flash
     .row.main-wrapper
       %nav.column
-        - if user_signed_in?
-          %ul.side-nav.text-right
-            %li= link_to "Home", root_path
-            %li= link_to "API Keys", api_keys_path
-            %li= link_to "Ops", ops_path
-            %li= link_to "Claims", claims_path
-            %li.divider
-            %li= link_to "Claimables", claimables_path
-            %li= link_to "Payouts", "#"
-            %li.divider
-            %li= link_to "Logout", logout_path, method: :delete
+        = render "left_nav" if user_signed_in?
       %main.column
         = yield
 
     %footer
       .row
         .medium-8.medium-offset-3.column
-          = user_signed_in? ? "logged in as #{current_user.name}": "unrecognized user"
+          = user_signed_in? ? "logged in as #{current_user.name} - #{current_corp ? current_corp.name : 'No Corp Set'}": "unrecognized user"
