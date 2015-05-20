@@ -6,11 +6,6 @@
       = f.text_field :name, required: true
   .row
     .small-2.column.text-right.unpad-right
-      = f.label :corp_id
-    .small-10.column
-      = f.collection_select :corp_id, current_user.corps, :id, :name, { prompt: "select Corp" }, required: true
-  .row
-    .small-2.column.text-right.unpad-right
       = f.label :weight
     .small-10.column
       = f.number_field :weight

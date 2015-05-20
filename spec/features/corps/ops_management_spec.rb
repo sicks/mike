@@ -18,7 +18,6 @@ RSpec.feature "Operation Management", type: :feature do
     scenario "user creates a new op", :vcr do
       click_link "Ops"
       click_link "new"
-      select user.corps.first.name, from: "Corp"
       fill_in "Name", with: "chain mapping"
       click_link_or_button "save"
 

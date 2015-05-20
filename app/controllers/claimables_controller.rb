@@ -49,6 +49,6 @@ class ClaimablesController < ApplicationController
   end
 
   def get_claimable
-    @claimable = Claimable.where(corp_id: current_user.corps.map{ |c| c.id} ).find(params[:id])
+    @claimable = Claimable.where(corp_id: current_corp.id).find(params[:id])
   end
 end

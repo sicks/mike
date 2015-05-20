@@ -24,10 +24,7 @@ class Op < ActiveRecord::Base
   end
 
   def self.prepare(user)
-    Op.new(
-      name: user.name+"'s Op",
-      corp_id: ( user.main.nil? ? nil : Corp.find_by_ccp_id( user.main.corporationID ).id ),
-      start_time: DateTime.now)
+    Op.new(name: user.name+"'s Op", start_time: DateTime.now)
   end
 
   def start_time

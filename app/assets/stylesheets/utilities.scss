@@ -1,3 +1,8 @@
+.label {
+  &.notice {
+    color: $dark;
+  }
+}
 .unpad-right {
   padding-right: 0;
 }

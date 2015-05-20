@@ -6,11 +6,6 @@
       = f.text_field :name, required: true
   .row
     .small-2.column.text-right.unpad-right
-      = f.label :corp_id
-    .small-10.column
-      = f.collection_select :corp_id, current_user.corps, :id, :name, { prompt: "select Corp" }, required: true
-  .row
-    .small-2.column.text-right.unpad-right
       = f.label :start
     .small-10.column
       = f.text_field :start_time, class: "datetimepicker", required: true

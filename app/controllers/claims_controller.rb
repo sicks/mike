@@ -14,10 +14,10 @@ class ClaimsController < ApplicationController
     @claim = @op.claims.create(claim_params)
 
     if @claim.save
-      flash_message(:notice, "add Claim success")
+      flash_message(:notice, "add claim success")
       redirect_to op_path(@op)
     else
-      flash_message(:notice, "add Claim failed")
+      flash_message(:alert, "add claim failed")
       render :new
     end
   end
@@ -30,17 +30,22 @@ class ClaimsController < ApplicationController
     @claim.update(claim_params)
 
     if @claim.save
-      flash_message(:notice, "update Claim success")
+      flash_message(:notice, "update claim success")
       redirect_to op_path(@op)
     else
-      flash_message(:notice, "update Claim failed")
+      flash_message(:alert, "update claim failed")
       render :new
     end
   end
 
   def destroy
-    @claim.destroy
-    redirect_to op_path(@op)
+    if @claim.destroy
+      flash_message(:notice, "delete claim success")
+      redirect_to op_path(@op)
+    else
+      flash_message(:alert, "delete claim failed")
+      redirect_to request.referrer
+    end
   end
 
   private
@@ -49,7 +54,7 @@ class ClaimsController < ApplicationController
   end
 
   def get_op
-    @op = Op.where(corp_id: current_user.corps.map{|c| c.id }).find(params[:op_id])
+    @op = Op.where(corp_id: current_corp.id).find(params[:op_id])
   end
 
   def get_claim
