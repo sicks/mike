@@ -23,13 +23,13 @@ http_interactions:
       access-control-allow-origin:
       - "*"
       date:
-      - Thu, 23 Apr 2015 02:52:08 GMT
+      - Wed, 20 May 2015 06:08:59 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
-        \ <currentTime>2015-04-23 02:52:08</currentTime>\r\n  <result>\r\n    <key
+        \ <currentTime>2015-05-20 06:08:59</currentTime>\r\n  <result>\r\n    <key
         accessMask=\"268435455\" type=\"Account\" expires=\"\">\r\n      <rowset name=\"characters\"
         key=\"characterID\" columns=\"characterID,characterName,corporationID,corporationName,allianceID,allianceName,factionID,factionName\">\r\n
         \       <row characterID=\"94174639\" characterName=\"App Oh PI\" corporationID=\"98312935\"
@@ -39,73 +39,10 @@ http_interactions:
         Chemical Bromance\" allianceID=\"0\" allianceName=\"\" factionID=\"0\" factionName=\"\"
         />\r\n        <row characterID=\"924610593\" characterName=\"Sicks\" corporationID=\"1262577328\"
         corporationName=\"Doom Generation\" allianceID=\"0\" allianceName=\"\" factionID=\"0\"
-        factionName=\"\" />\r\n      </rowset>\r\n    </key>\r\n  </result>\r\n  <cachedUntil>2015-04-23
-        02:57:08</cachedUntil>\r\n</eveapi>"
+        factionName=\"\" />\r\n      </rowset>\r\n    </key>\r\n  </result>\r\n  <cachedUntil>2015-05-20
+        06:10:01</cachedUntil>\r\n</eveapi>"
     http_version: 
-  recorded_at: Thu, 23 Apr 2015 02:52:09 GMT
-- request:
-    method: get
-    uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=4300328&vcode=
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v0.8.9
-  response:
-    status:
-      code: 403
-      message: 
-    headers:
-      content-type:
-      - application/xml; charset=utf-8
-      access-control-allow-origin:
-      - "*"
-      date:
-      - Thu, 23 Apr 2015 02:52:09 GMT
-      connection:
-      - close
-      content-length:
-      - '224'
-    body:
-      encoding: UTF-8
-      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
-        \ <currentTime>2015-04-23 02:52:09</currentTime>\r\n  <error code=\"203\">Authentication
-        failure.</error>\r\n  <cachedUntil>2015-04-24 02:52:09</cachedUntil>\r\n</eveapi>"
-    http_version: 
-  recorded_at: Thu, 23 Apr 2015 02:52:10 GMT
-- request:
-    method: get
-    uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=&vcode=gG6S0R1nyX5Sn0taPg0VjIgqWwz3JcgxSLSilHikTmHFpnb6UNDBqyPxJU4knu1y
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v0.8.9
-  response:
-    status:
-      code: 400
-      message: 
-    headers:
-      content-type:
-      - application/xml; charset=utf-8
-      access-control-allow-origin:
-      - "*"
-      date:
-      - Thu, 23 Apr 2015 02:52:10 GMT
-      connection:
-      - close
-      content-length:
-      - '259'
-    body:
-      encoding: UTF-8
-      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
-        \ <currentTime>2015-04-23 02:52:10</currentTime>\r\n  <error code=\"106\">Must
-        provide userID or keyID parameter for authentication.</error>\r\n  <cachedUntil>2015-04-23
-        14:52:10</cachedUntil>\r\n</eveapi>"
-    http_version: 
-  recorded_at: Thu, 23 Apr 2015 02:52:10 GMT
+  recorded_at: Wed, 20 May 2015 06:09:00 GMT
 - request:
     method: get
     uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=4300329&vcode=BqFQDA7L7Z1BlJGg5HbPtTBITOezZmB71XAWLiyD9QZhWUJNjosSjN1XREgbeBqb
@@ -125,7 +62,7 @@ http_interactions:
       access-control-allow-origin:
       - "*"
       date:
-      - Thu, 23 Apr 2015 02:52:11 GMT
+      - Wed, 20 May 2015 06:09:00 GMT
       connection:
       - close
       content-length:
@@ -133,14 +70,14 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
-        \ <currentTime>2015-04-23 02:52:11</currentTime>\r\n  <error code=\"222\">Key
-        has expired. Contact key owner for access renewal.</error>\r\n  <cachedUntil>2015-04-24
-        02:52:11</cachedUntil>\r\n</eveapi>"
+        \ <currentTime>2015-05-20 06:09:00</currentTime>\r\n  <error code=\"222\">Key
+        has expired. Contact key owner for access renewal.</error>\r\n  <cachedUntil>2015-05-21
+        06:09:00</cachedUntil>\r\n</eveapi>"
     http_version: 
-  recorded_at: Thu, 23 Apr 2015 02:52:11 GMT
+  recorded_at: Wed, 20 May 2015 06:09:00 GMT
 - request:
     method: get
-    uri: https://api.eveonline.com/account/Characters.xml.aspx?keyid=4300328&vcode=gG6S0R1nyX5Sn0taPg0VjIgqWwz3JcgxSLSilHikTmHFpnb6UNDBqyPxJU4knu1y
+    uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=4300329&vcode=BqFQDA7L7Z1BlJGg5HbPtTBITOezZmB71XAWLiyD9QZhWUJNjosSjN1XREgbeBqb
     body:
       encoding: US-ASCII
       string: ''
@@ -149,33 +86,88 @@ http_interactions:
       - Faraday v0.8.9
   response:
     status:
-      code: 200
+      code: 403
       message: 
     headers:
-      transfer-encoding:
-      - chunked
       content-type:
       - application/xml; charset=utf-8
-      vary:
-      - Accept-Encoding
       access-control-allow-origin:
       - "*"
       date:
-      - Fri, 24 Apr 2015 20:17:42 GMT
+      - Wed, 20 May 2015 06:09:00 GMT
       connection:
       - close
+      content-length:
+      - '255'
     body:
       encoding: UTF-8
       string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
-        \ <currentTime>2015-04-24 20:17:43</currentTime>\r\n  <result>\r\n    <rowset
-        name=\"characters\" key=\"characterID\" columns=\"name,characterID,corporationName,corporationID,allianceID,allianceName,factionID,factionName\">\r\n
-        \     <row name=\"App Oh PI\" characterID=\"94174639\" corporationName=\"My
-        Chemical Bromance\" corporationID=\"98312935\" allianceID=\"0\" allianceName=\"\"
-        factionID=\"0\" factionName=\"\" />\r\n      <row name=\"Main Go PI\" characterID=\"94217452\"
-        corporationName=\"My Chemical Bromance\" corporationID=\"98312935\" allianceID=\"0\"
-        allianceName=\"\" factionID=\"0\" factionName=\"\" />\r\n      <row name=\"Sicks\"
-        characterID=\"924610593\" corporationName=\"Doom Generation\" corporationID=\"1262577328\"
-        allianceID=\"0\" allianceName=\"\" factionID=\"0\" factionName=\"\" />\r\n
-        \   </rowset>\r\n  </result>\r\n  <cachedUntil>2015-04-24 20:59:38</cachedUntil>\r\n</eveapi>"
+        \ <currentTime>2015-05-20 06:09:01</currentTime>\r\n  <error code=\"222\">Key
+        has expired. Contact key owner for access renewal.</error>\r\n  <cachedUntil>2015-05-21
+        06:09:01</cachedUntil>\r\n</eveapi>"
     http_version: 
-  recorded_at: Fri, 24 Apr 2015 20:17:43 GMT
+  recorded_at: Wed, 20 May 2015 06:09:01 GMT
+- request:
+    method: get
+    uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=4300328&vcode=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 403
+      message: 
+    headers:
+      content-type:
+      - application/xml; charset=utf-8
+      access-control-allow-origin:
+      - "*"
+      date:
+      - Wed, 20 May 2015 06:09:02 GMT
+      connection:
+      - close
+      content-length:
+      - '224'
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2015-05-20 06:09:03</currentTime>\r\n  <error code=\"203\">Authentication
+        failure.</error>\r\n  <cachedUntil>2015-05-21 06:09:03</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Wed, 20 May 2015 06:09:03 GMT
+- request:
+    method: get
+    uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=&vcode=gG6S0R1nyX5Sn0taPg0VjIgqWwz3JcgxSLSilHikTmHFpnb6UNDBqyPxJU4knu1y
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      content-type:
+      - application/xml; charset=utf-8
+      access-control-allow-origin:
+      - "*"
+      date:
+      - Wed, 20 May 2015 06:09:03 GMT
+      connection:
+      - close
+      content-length:
+      - '259'
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2015-05-20 06:09:04</currentTime>\r\n  <error code=\"106\">Must
+        provide userID or keyID parameter for authentication.</error>\r\n  <cachedUntil>2015-05-20
+        18:09:04</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Wed, 20 May 2015 06:09:04 GMT
+recorded_with: VCR 2.9.3
