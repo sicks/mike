@@ -47,8 +47,8 @@ body > header {
 
   .flash {
     display: flex;
+    align-items: flex-end;
     div {
-      align-self: flex-end;
       margin-bottom: 0.3em;
     }
   }
