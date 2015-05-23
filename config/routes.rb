@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
   resources :claims, only: [:index]
   resources :claimables
+  resources :payouts, only: [:index, :create]
+  post '/payouts/new', to: 'payouts#new', as: 'new_payout'
 end

@@ -1,0 +1,44 @@
+%header
+  = page_title "Dividend Breakdown"
+
+.block-group
+  .row
+    .small-7.column
+      Total Amount
+    .small-5.column
+      = number_to_isk(@payout.amount_payable)
+
+.block-group
+  .row
+    .small-7.column
+      Corp Cut (20%)
+    .small-5.column
+      = number_to_isk(@payout.amount_payable * 0.2)
+
+.block-group
+  .row
+    .small-7.column
+      = "#{@payout.total_claims} claims to distribute from #{@payout.ops.length} ops"
+    .small-5.column
+      = number_to_isk(@payout.amount_payable * 0.8)
+
+.block-group
+  .row
+    .small-12.column
+      %h4 Member Divvies
+  - @payout.dividend_matrix.each do |divvy|
+    .row
+      .small-7.column
+        = divvy[:name]
+      .small-5.column
+        = text_field_tag :isk, divvy[:total].round(2), disabled: true
+
+.block-group
+  = form_for @payout do |f|
+    = f.hidden_field :amount_payable
+    - @unpaid_ops.pluck(:id).each do |id|
+      = hidden_field_tag "ops[]", id, id: "op_#{id}"
+    .row
+      .small-12.column
+        = f.submit "Confirm Payments Made", class: "button"
+

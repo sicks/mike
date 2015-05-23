@@ -32,4 +32,8 @@ module ApplicationHelper
     end
     output.html_safe
   end
+
+  def number_to_isk(num)
+    number_to_currency(num, unit: "isk", separator: ".", delimiter: ",", precision: 2, format: "%n %u")
+  end
 end

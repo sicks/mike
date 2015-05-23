@@ -1,0 +1,30 @@
+%header
+  = page_title "Payouts"
+
+.row
+  .small-12.column
+    %h3= current_corp.name
+
+.block-group
+  .row
+    .small-12.column
+      %h4 New Payout
+  .row
+    = form_for @payout, url: new_payout_path do |f|
+      .small-4.column
+        = f.label :amount_payable
+      .small-6.column
+        = f.text_field :amount_payable
+      .small-2.column
+        = f.submit "Pay Claims", class: "button small"
+
+.block-group
+  .row
+    .small-12.column
+      %h4 Past Payouts
+  - @payouts.each do |payout|
+    .row
+      .small-4.column
+        = payout.created_at.strftime("%d-%m-%Y")
+      .small-6.column
+        = number_to_isk( payout.amount_payable )
