@@ -6,11 +6,11 @@ class ClaimablesController < ApplicationController
   end
 
   def new
-    @claimable = Claimable.new(weight: 1, corp_id: current_user.corps.first.id)
+    @claimable = current_corp.claimables.build( weight: 1 )
   end
 
   def create
-    @claimable = Claimable.create(claimable_params)
+    @claimable = current_corp.claimables.create(claimable_params)
 
     if @claimable.save
       flash_message(:notice, "add Claimable success")
@@ -49,6 +49,6 @@ class ClaimablesController < ApplicationController
   end
 
   def get_claimable
-    @claimable = Claimable.where(corp_id: current_corp.id).find(params[:id])
+    @claimable = current_corp.claimables.where(corp_id: current_corp.id).find(params[:id])
   end
 end
