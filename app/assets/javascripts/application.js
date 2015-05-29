@@ -11,13 +11,13 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require foundation/foundation
 //= require turbolinks
 //= require jquery.datetimepicker
 
-$(function(){
+var ready;
+ready = function() {
   $(document).foundation();
   $(document).on('click', 'a.menu-toggle', function(){
     $('.main-wrapper').toggleClass('open');
@@ -25,4 +25,7 @@ $(function(){
   $(".datetimepicker").datetimepicker({
     mask: true
    }).blur();
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

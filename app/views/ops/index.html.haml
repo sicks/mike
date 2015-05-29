@@ -2,5 +2,35 @@
   = page_title "Operations"
   = link_to "new", new_op_path, class: "pull-right"
 
-= render partial: "corp", object: current_corp
+.row
+  .small-12.column
+    %h3
+      = current_corp.name
+
+.block-group
+  .row
+    .medium-6.column
+      %h6
+        Active Ops
+      %ul.ops
+        = render partial: "active_op", collection: current_corp.ops.active
+    .medium-6.column
+      %h6
+        Upcoming Ops
+      %ul.ops
+        = render partial: "future_op", collection: current_corp.ops.future
+
+.block-group
+  .row
+    .small-6.column
+      %h6
+        Completed Ops
+    .small-2.column.text-center
+      Participants
+    .small-2.column.text-center
+      Claims
+    .small-2.column.text-center
+      Total
+  = render partial: "concluded_op", collection: current_corp.ops.concluded
+
 

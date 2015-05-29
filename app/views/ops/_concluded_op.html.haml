@@ -1,0 +1,9 @@
+.row
+  .small-6.column
+    = link_to concluded_op.name, op_path(concluded_op)
+  .small-2.column.text-center
+    = concluded_op.participants.length
+  .small-2.column.text-center
+    = concluded_op.subtotal
+  .small-2.column.text-center
+    = concluded_op.total

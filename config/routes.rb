@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: "users#home"
+  root to: "ops#index"
   resources :users, only: [:update]
 
   get '/login', to: 'sessions#new'
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     resources :claims, only: [:new, :create, :edit, :update, :destroy]
     resources :participants, only: [:create, :update, :destroy]
   end
-  resources :claims, only: [:index]
   resources :claimables
   resources :payouts, only: [:index, :create]
   post '/payouts/new', to: 'payouts#new', as: 'new_payout'
