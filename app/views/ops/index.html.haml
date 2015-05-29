@@ -23,14 +23,23 @@
 .block-group
   .row
     .small-6.column
-      %h6
-        Completed Ops
+      %h6 Unpaid Ops
     .small-2.column.text-center
       Participants
     .small-2.column.text-center
       Claims
     .small-2.column.text-center
       Total
-  = render partial: "concluded_op", collection: current_corp.ops.concluded
+  = render partial: "concluded_op", collection: current_corp.ops.unpaid
 
-
+.block-group
+  .row
+    .small-6.column
+      %h6 Paid Ops
+    .small-2.column.text-center
+      Participants
+    .small-2.column.text-center
+      Claims
+    .small-2.column.text-center
+      Total
+  = render partial: "concluded_op", collection: current_corp.ops.paid

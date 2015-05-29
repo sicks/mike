@@ -20,7 +20,15 @@ class Op < ActiveRecord::Base
   end
 
   def self.concluded
-    where.not(end_time: nil)
+    where.not(end_time: nil).order(end_time: :desc)
+  end
+
+  def self.unpaid
+    concluded.where(payout_id: nil)
+  end
+
+  def self.paid
+    concluded.where.not(payout_id: nil)
   end
 
   def self.prepare(user)
