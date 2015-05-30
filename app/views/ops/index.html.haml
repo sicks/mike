@@ -18,7 +18,7 @@
       %h6
         Upcoming Ops
       %ul.ops
-        = render partial: "future_op", collection: current_corp.ops.future
+        = current_corp.ops.future.any? ? render(partial: "future_op", collection: current_corp.ops.future) : content_tag(:span, "None Scheduled", class: "subtext")
 
 .block-group
   .row

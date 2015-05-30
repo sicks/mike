@@ -6,55 +6,64 @@
 
 .row.section-title
   .small-8.column
-    %h3 Claims
+    %h4 Claims
   .small-4.column.text-right
     = link_to "add claim", new_op_claim_path(@op), class: "button tiny"
 
 .block-group
-  .row
-    .small-8.column
-      Claim
-    .small-2.column.text-center
-      Weight
-    .small-2.column.text-center
-      Qty.
-  - @op.claims.each do |claim|
+  - if @op.claims.any?
     .row
       .small-8.column
-        = link_to claim.claimable.name, edit_op_claim_path(@op, claim)
+        Claim
       .small-2.column.text-center
-        = claim.claimable.weight
+        Weight
       .small-2.column.text-center
-        = claim.quantity
-
+        Qty.
+    - @op.claims.each do |claim|
+      .row
+        .small-8.column
+          = link_to claim.claimable.name, edit_op_claim_path(@op, claim)
+        .small-2.column.text-center
+          = claim.claimable.weight
+        .small-2.column.text-center
+          = claim.quantity
+  - else
+    .row
+      .small-12.column
+        This Op has no claims! Add a claim to give this Op purpose.
 
 .row.section-title
   .small-8.column
-    %h3 Participants
+    %h4 Participants
   .small-4.column.text-right
     - if @op.users.include?(current_user)
-      %span.subtext participating!
+      %span.subtext you are participating!
     - else
       = link_to "Participate", op_participants_path(@op), method: :post, class: "button tiny"
 
 .block-group
-  .row
-    .small-7.column
-      Member
-    .small-2.column.text-center.end
-      Modifier
-  - @op.participants.each do |p|
+  - if @op.participants.any?
     .row
       .small-7.column
-        = p.user.name
-      .small-2.column.text-center
-        = p.mod
-      .small-3.column.text-right
-        = link_to icon('close')+" withdraw", [@op, p], method: :delete, class: "button tiny alert"
+        Member
+      .small-2.column.text-center.end
+        Modifier
+    - @op.participants.each do |p|
+      .row
+        .small-7.column
+          = p.user.name
+        .small-2.column.text-center
+          = p.mod
+        .small-3.column.text-right
+          = link_to icon('close')+" withdraw", [@op, p], method: :delete, class: "button tiny alert"
+  - else
+    .row
+      .small-12.column
+        This Op has no participants! Guess noone wants to get paid.
 
 .row
   .small-12.column
-    %h3 Totals:
+    %h4 Totals
 
 .block-group
   .row
@@ -70,10 +79,27 @@
 
 .row
   .small-12.column
-    %h3= "Finalize Op"
+    %h4= "Conclusion"
 .block-group
-  .row
-    .small-12.column
-      = link_to "Conclude Op: " + DateTime.now.strftime("%Y/%m/%d %H:%M"), op_conclude_path(@op), class: "button small alert"
-
+  - unless @op.concluded?
+    - if @op.claims.any? && @op.participants.any?
+      .row
+        .small-12.column
+          = link_to "Conclude Op: " + DateTime.now.strftime("%Y/%m/%d %H:%M"), op_conclude_path(@op), class: "button small alert"
+    - else
+      .row
+        .small-12.column
+          An op needs claims and participants before it can be concluded.
+  - else
+    .row
+      .small-12.column
+        = "Op concluded on #{@op.end_time}"
+    - if @op.paid?
+      .row
+        .small-12.column
+          = "Op paid out on #{@op.payout.created_at.strftime("%Y/%m/%d %H:%M")}"
+    - else
+      .row
+        .small-12.column
+          Op unpaid
 

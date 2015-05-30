@@ -1,6 +1,7 @@
 class Op < ActiveRecord::Base
   belongs_to :corp
   belongs_to :user
+  belongs_to :payout
   has_many :claims, dependent: :destroy
   has_many :participants, dependent: :destroy
   has_many :users, through: :participants
@@ -23,12 +24,20 @@ class Op < ActiveRecord::Base
     where.not(end_time: nil).order(end_time: :desc)
   end
 
+  def concluded?
+    !end_time.nil?
+  end
+
   def self.unpaid
     concluded.where(payout_id: nil)
   end
 
   def self.paid
     concluded.where.not(payout_id: nil)
+  end
+
+  def paid?
+    !payout_id.nil?
   end
 
   def self.prepare(user)
