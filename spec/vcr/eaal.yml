@@ -77,38 +77,6 @@ http_interactions:
   recorded_at: Wed, 20 May 2015 06:09:00 GMT
 - request:
     method: get
-    uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=4300329&vcode=BqFQDA7L7Z1BlJGg5HbPtTBITOezZmB71XAWLiyD9QZhWUJNjosSjN1XREgbeBqb
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v0.8.9
-  response:
-    status:
-      code: 403
-      message: 
-    headers:
-      content-type:
-      - application/xml; charset=utf-8
-      access-control-allow-origin:
-      - "*"
-      date:
-      - Wed, 20 May 2015 06:09:00 GMT
-      connection:
-      - close
-      content-length:
-      - '255'
-    body:
-      encoding: UTF-8
-      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
-        \ <currentTime>2015-05-20 06:09:01</currentTime>\r\n  <error code=\"222\">Key
-        has expired. Contact key owner for access renewal.</error>\r\n  <cachedUntil>2015-05-21
-        06:09:01</cachedUntil>\r\n</eveapi>"
-    http_version: 
-  recorded_at: Wed, 20 May 2015 06:09:01 GMT
-- request:
-    method: get
     uri: https://api.eveonline.com/account/APIKeyInfo.xml.aspx?keyid=4300328&vcode=
     body:
       encoding: US-ASCII
@@ -170,4 +138,43 @@ http_interactions:
         18:09:04</cachedUntil>\r\n</eveapi>"
     http_version: 
   recorded_at: Wed, 20 May 2015 06:09:04 GMT
+- request:
+    method: get
+    uri: https://api.eveonline.com/account/Characters.xml.aspx?keyid=4300328&vcode=gG6S0R1nyX5Sn0taPg0VjIgqWwz3JcgxSLSilHikTmHFpnb6UNDBqyPxJU4knu1y
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      transfer-encoding:
+      - chunked
+      content-type:
+      - application/xml; charset=utf-8
+      access-control-allow-origin:
+      - "*"
+      date:
+      - Fri, 12 Jun 2015 16:16:27 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?>\r\n<eveapi version=\"2\">\r\n
+        \ <currentTime>2015-06-12 16:16:28</currentTime>\r\n  <result>\r\n    <rowset
+        name=\"characters\" key=\"characterID\" columns=\"name,characterID,corporationName,corporationID,allianceID,allianceName,factionID,factionName\">\r\n
+        \     <row name=\"App Oh PI\" characterID=\"94174639\" corporationName=\"My
+        Chemical Bromance\" corporationID=\"98312935\" allianceID=\"0\" allianceName=\"\"
+        factionID=\"0\" factionName=\"\" />\r\n      <row name=\"Main Go PI\" characterID=\"94217452\"
+        corporationName=\"My Chemical Bromance\" corporationID=\"98312935\" allianceID=\"0\"
+        allianceName=\"\" factionID=\"0\" factionName=\"\" />\r\n      <row name=\"Sicks\"
+        characterID=\"924610593\" corporationName=\"Doom Generation\" corporationID=\"1262577328\"
+        allianceID=\"0\" allianceName=\"\" factionID=\"0\" factionName=\"\" />\r\n
+        \   </rowset>\r\n  </result>\r\n  <cachedUntil>2015-06-12 17:13:28</cachedUntil>\r\n</eveapi>"
+    http_version: 
+  recorded_at: Fri, 12 Jun 2015 16:16:28 GMT
 recorded_with: VCR 2.9.3
