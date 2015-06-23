@@ -8,13 +8,7 @@ class Op < ActiveRecord::Base
 
   validates :name, :corp_id, :start_time,  presence: true
 
-  def self.active
-    unconcluded.where("start_time < ?", DateTime.now)
-  end
-
-  def self.future
-    unconcluded.where("start_time > ?", DateTime.now)
-  end
+## scopes
 
   def self.unconcluded
     where(end_time: nil)
@@ -24,8 +18,12 @@ class Op < ActiveRecord::Base
     where.not(end_time: nil).order(end_time: :desc)
   end
 
-  def concluded?
-    !end_time.nil?
+  def self.active
+    unconcluded.where("start_time < ?", DateTime.now)
+  end
+
+  def self.future
+    unconcluded.where("start_time > ?", DateTime.now)
   end
 
   def self.unpaid
@@ -36,13 +34,23 @@ class Op < ActiveRecord::Base
     concluded.where.not(payout_id: nil)
   end
 
-  def paid?
-    !payout_id.nil?
-  end
+## class methods
 
   def self.prepare(user)
     Op.new(name: user.name+"'s Op", start_time: DateTime.now)
   end
+
+## predicates
+
+  def concluded?
+    !end_time.nil?
+  end
+
+  def paid?
+    !payout_id.nil?
+  end
+
+## instance methods
 
   def start_time
     read_attribute(:start_time).strftime("%Y/%m/%d %H:%M") unless read_attribute(:start_time).nil?

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Op, type: :model do
   let(:op) { build(:active_op) }
 
+## validations
   it "is invalid without a corp" do
     op.corp_id = nil
 
@@ -21,6 +22,35 @@ RSpec.describe Op, type: :model do
     expect(op.valid?).to eq false
   end
 
+## scopes
+  describe "self.unconcluded" do
+    it "returns only unconcluded ops"
+  end
+
+  describe "self.concluded" do
+    it "returns only concluded ops"
+  end
+
+  describe "self.active" do
+    it "returns only unconcluded ops which have started"
+  end
+
+  describe "self.future" do
+    it "returns only unconcluded ops which have yet to start"
+  end
+
+  describe "self.unpaid" do
+    it "returns only concluded ops which have yet to be paid"
+  end
+
+  describe "self.paid" do
+    it "returns only concluded ops which have been paid out"
+  end
+
+## class methods
+
+
+## associations
   describe ".participants" do
     it "lists users who participated in the op"
   end
